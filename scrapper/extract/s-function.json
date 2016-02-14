@@ -1,0 +1,21 @@
+{
+  "name": "extract",
+  "customName": false,
+  "customRole": false,
+  "handler": "extract/handler.handler",
+  "timeout": 300,
+  "memorySize": 1024,
+  "custom": {
+    "excludePatterns": [],
+    "envVars": []
+  },
+  "events": [
+    {
+      "name" : "extract-twitter",
+      "type": "schedule",
+      "config": {
+         "schedule": "rate(5 minutes)"
+      }
+    }
+  ]
+}

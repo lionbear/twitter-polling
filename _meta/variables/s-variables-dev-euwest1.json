@@ -1,0 +1,5 @@
+{
+  "region": "eu-west-1",
+  "resourcesStackName": "twitter-polling-dev-r",
+  "iamRoleArnLambda": "arn:aws:iam::622607240642:role/twitter-polling-dev-r-IamRoleLambda-177D48PNY4CTX"
+}

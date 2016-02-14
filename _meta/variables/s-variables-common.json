@@ -1,0 +1,6 @@
+{
+  "project": "twitter-polling",
+  "projectBucket": "serverless.eu-west-1.lionbear-twitter-polling0",
+  "domain": "lionbear-twitter-polling0",
+  "notificationEmail": "martinffx@gmail.com"
+}
