@@ -13,10 +13,15 @@ var ServerlessHelpers = require('serverless-helpers-js').loadEnv();
 // Require Logic
 var lib = require('../lib');
 
+// Load ENV
+var ServerlessHelpers = require('serverless-helpers-js');
+ServerlessHelpers.loadEnv();
+
 // Lambda Handler
 module.exports.handler = function(event, context) {
-
-  lib.respond(event, function(error, response) {
-    return context.done(error, response);
+  lib.extract(function(){
+    return context.getRemainingTimeInMillis() < 5;
+  }).then(function(){
+    context.
   });
 };

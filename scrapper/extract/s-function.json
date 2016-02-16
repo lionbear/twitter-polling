@@ -4,10 +4,10 @@
   "customRole": false,
   "handler": "extract/handler.handler",
   "timeout": 300,
-  "memorySize": 1024,
+  "memorySize": 256,
   "custom": {
     "excludePatterns": [],
-    "envVars": []
+    "envVars": ["TEST"]
   },
   "events": [
     {
