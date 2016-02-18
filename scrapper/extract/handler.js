@@ -20,8 +20,6 @@ ServerlessHelpers.loadEnv();
 // Lambda Handler
 module.exports.handler = function(event, context) {
   lib.extract(function(){
-    return context.getRemainingTimeInMillis() < 5;
-  }).then(function(){
-    context.
+    return context.getRemainingTimeInMillis() < 3;
   });
 };

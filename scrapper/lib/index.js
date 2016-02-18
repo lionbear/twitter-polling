@@ -1,7 +1,6 @@
 /**
  * Lib
  */
-require('es6-promise').polyfill();
 var Twit = require('twit');
 
 var T = new Twit({
@@ -12,19 +11,12 @@ var T = new Twit({
 });
 
 module.exports.extract = function(execute){
-  var promise = new Promise();
-  try {
-    var stream = T.stream('statuses/filter', { track: "#anc" })
-    stream.on('tweet', function (tweet) {
-      console.log(tweet)
-      if(!execute()){
-        stream.destroy();
-        promise.reslove();
-      }
-    });
-  } catch(ex) {
-    promise.reject(ex);
-  }
-  return promise;
+  var stream = T.stream('statuses/filter', { track: "#anc" })
+  stream.on('tweet', function (tweet) {
+    console.log(tweet)
+    if(!execute()){
+      stream.destroy();
+    }
+  });
 };
 
