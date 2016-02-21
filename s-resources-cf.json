@@ -2,7 +2,7 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "The AWS CloudFormation template for this Serverless application's resources outside of Lambdas and Api Gateway",
   "Resources": {
-    "IamRoleLambda": {
+    "RootRole": {
       "Type": "AWS::IAM::Role",
       "Properties": {
         "AssumeRolePolicyDocument": {
@@ -24,7 +24,30 @@
         "Path": "/"
       }
     },
-    "IamPolicyLambda": {
+    "ScrapperRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com",
+                  "dynamodb.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/scrapper"
+      }
+    },
+    "RootPolicy": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyName": "${stage}-${project}-lambda",
@@ -44,9 +67,30 @@
         },
         "Roles": [
           {
-            "Ref": "IamRoleLambda"
+            "Ref": "RootRole"
           }
         ]
+      }
+    },
+    "RawTweesPolicy": {
+      "Type": "AWS::IAM::Policy",
+    },
+    "RawTweetsTable": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "RawTweetsTable",
+        "AttributeDefinitions": [{
+          "AttributeName":"id", 
+          "AttributeType": "N"
+        }],
+        "KeySchema" : [{
+          "AttributeName" : "id",
+          "KeyType" : "HASH"
+        }],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits" : 5,
+          "WriteCapacityUnits" : 5
+        }
       }
     }
   },
