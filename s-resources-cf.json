@@ -72,8 +72,27 @@
         ]
       }
     },
-    "RawTweesPolicy": {
+    "RawTweetsPolicy": {
       "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "${stage}-${project}-raw-tweets-db",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": "*", 
+              "Resource": "Fn::GetAtt": [ "RawTweetsTable", "Arn" ]
+            }
+          ]
+        },
+        "Roles": [
+          {
+            "Ref": "ScrapperRole"
+          }
+        ]
+        
+      }
     },
     "RawTweetsTable": {
       "Type": "AWS::DynamoDB::Table",

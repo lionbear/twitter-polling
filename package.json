@@ -1,13 +1,17 @@
 {
-  "name": "twitter-polling",
+  "name": "Twitter Polling",
   "version": "0.0.1",
-  "description": "A Serverless Project and its Serverless Plugin dependencies.",
-  "author": "me",
+  "description": "Serverless module dependencies",
+  "author": "Lionbear",
   "license": "MIT",
-  "private": false,
+  "private": true,
   "repository": {
     "type": "git",
-    "url": "git://github.com/"
+    "url": "git://github.com/lionbear/twiter-polling"
   },
-  "dependencies": {}
+  "keywords": [],
+  "devDependencies": {},
+  "dependencies": {
+    "serverless-helpers-js": "~0.1.0"
+  }
 }
